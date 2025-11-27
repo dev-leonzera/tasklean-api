@@ -9,6 +9,7 @@ import sprintsRoutes from './routes/sprints';
 import commitmentsRoutes from './routes/commitments';
 import usersRoutes from './routes/users';
 import authRoutes from './routes/auth';
+import reportsRoutes from './routes/reports';
 
 dotenv.config();
 
@@ -29,6 +30,7 @@ app.use('/api/tasks', tasksRoutes);
 app.use('/api/sprints', sprintsRoutes);
 app.use('/api/commitments', commitmentsRoutes);
 app.use('/api/users', usersRoutes);
+app.use('/api/reports', reportsRoutes);
 
 // Health check
 app.get('/health', (req: Request, res: Response) => {

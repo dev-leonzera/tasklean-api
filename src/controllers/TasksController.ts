@@ -23,12 +23,15 @@ export class TasksController {
         name: task.name,
         project: task.project?.name || '',
         assignee: task.assignee?.name || '',
+        assigneeId: task.assigneeId,
         status: task.status,
         priority: task.priority,
         due: task.dueDate ? new Date(task.dueDate).toLocaleDateString('pt-BR') : '',
         comments: task.comments,
         attachments: task.attachments,
         description: task.description,
+        createdAt: task.createdAt,
+        updatedAt: task.updatedAt,
       }));
 
       res.json(formattedTasks);

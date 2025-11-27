@@ -5,11 +5,13 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToOne,
+  OneToMany,
   JoinColumn,
 } from 'typeorm';
 import { Project } from './Project';
 import { User } from './User';
 import { Sprint } from './Sprint';
+import { TaskComment } from './TaskComment';
 
 @Entity('tasks')
 export class Task {
@@ -63,5 +65,8 @@ export class Task {
   @ManyToOne(() => Sprint, (sprint) => sprint.tasks, { onDelete: 'SET NULL' })
   @JoinColumn({ name: 'sprintId' })
   sprint!: Sprint | null;
+
+  @OneToMany(() => TaskComment, (comment) => comment.task)
+  commentsList!: TaskComment[];
 }
 

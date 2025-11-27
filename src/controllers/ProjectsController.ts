@@ -7,7 +7,12 @@ const projectService = new ProjectService();
 export class ProjectsController {
   async getAll(req: Request, res: Response, next: NextFunction) {
     try {
-      const projects = await projectService.findAll();
+      const { tag } = req.query;
+      
+      const filters: any = {};
+      if (tag) filters.tag = tag;
+
+      const projects = await projectService.findAll(filters);
 
       // Transformar para o formato esperado pelo frontend
       const formattedProjects = projects.map(project => {
@@ -26,6 +31,7 @@ export class ProjectsController {
           members: project.members?.map(m => m.user.name) || [],
           due: project.dueDate ? new Date(project.dueDate).toLocaleDateString('pt-BR') : '',
           color: project.color,
+          tags: project.tags?.map(t => ({ name: t.name, color: t.color })) || [],
         };
       });
 
@@ -123,6 +129,15 @@ export class ProjectsController {
       if (error instanceof Error && error.message === 'Member not found') {
         return res.status(404).json({ error: error.message });
       }
+      next(error);
+    }
+  }
+
+  async getAllTags(req: Request, res: Response, next: NextFunction) {
+    try {
+      const tags = await projectService.getAllTags();
+      res.json(tags);
+    } catch (error) {
       next(error);
     }
   }

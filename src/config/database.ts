@@ -2,7 +2,9 @@ import { DataSource } from 'typeorm';
 import { User } from '../entities/User';
 import { Project } from '../entities/Project';
 import { ProjectMember } from '../entities/ProjectMember';
+import { ProjectTag } from '../entities/ProjectTag';
 import { Task } from '../entities/Task';
+import { TaskComment } from '../entities/TaskComment';
 import { Sprint } from '../entities/Sprint';
 import { SprintMember } from '../entities/SprintMember';
 import { Commitment } from '../entities/Commitment';
@@ -17,7 +19,9 @@ export const AppDataSource = new DataSource({
     User,
     Project,
     ProjectMember,
+    ProjectTag,
     Task,
+    TaskComment,
     Sprint,
     SprintMember,
     Commitment,

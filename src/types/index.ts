@@ -1,3 +1,8 @@
+export interface ProjectTagDto {
+  name: string;
+  color?: string;
+}
+
 export interface CreateProjectDto {
   name: string;
   description?: string;
@@ -6,6 +11,7 @@ export interface CreateProjectDto {
   dueDate?: string;
   ownerId: number;
   members?: number[];
+  tags?: ProjectTagDto[];
 }
 
 export interface UpdateProjectDto {
@@ -14,6 +20,7 @@ export interface UpdateProjectDto {
   status?: string;
   color?: string;
   dueDate?: string | null;
+  tags?: ProjectTagDto[];
 }
 
 export interface CreateTaskDto {
@@ -95,5 +102,15 @@ export interface UpdateUserDto {
   name?: string;
   email?: string;
   password?: string;
+}
+
+export interface CreateTaskCommentDto {
+  content: string;
+  taskId: number;
+  authorId: number;
+}
+
+export interface UpdateTaskCommentDto {
+  content?: string;
 }
 

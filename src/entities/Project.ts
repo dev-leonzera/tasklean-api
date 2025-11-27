@@ -13,6 +13,7 @@ import { ProjectMember } from './ProjectMember';
 import { Task } from './Task';
 import { Sprint } from './Sprint';
 import { Commitment } from './Commitment';
+import { ProjectTag } from './ProjectTag';
 
 @Entity('projects')
 export class Project {
@@ -58,5 +59,8 @@ export class Project {
 
   @OneToMany(() => Commitment, (commitment) => commitment.project)
   commitments!: Commitment[];
+
+  @OneToMany(() => ProjectTag, (tag) => tag.project)
+  tags!: ProjectTag[];
 }
 
